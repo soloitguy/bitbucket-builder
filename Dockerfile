@@ -5,6 +5,7 @@ ENV CHROME_DRIVER_VERSION 2.20
 RUN apt-get update && \
     apt-get install -y git curl build-essential vim libfontconfig1 libgconf-2-4 libnss3 nodejs npm wget
 RUN apt-get install -y unzip
+RUN apt-get install -y wine
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/bin/
 RUN chmod ugo+rx /usr/bin/chromedriver
@@ -14,4 +15,4 @@ RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/so
 RUN apt-get update && apt-get install -y \
         google-chrome-stable
 RUN useradd -ms /bin/bash builder
-USER builder        
+USER builder

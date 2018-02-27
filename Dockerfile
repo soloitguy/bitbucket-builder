@@ -14,5 +14,6 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN apt-get update && apt-get install -y \
         google-chrome-stable
+VOLUME /tmp/.X11-unix/X0 /tmp/.X11-unix/X0        
 RUN useradd -ms /bin/bash builder
 USER builder

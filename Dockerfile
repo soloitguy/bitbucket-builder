@@ -14,6 +14,9 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 RUN apt-get update && apt-get install -y \
         google-chrome-stable
-VOLUME /tmp/.X11-unix/X0 /tmp/.X11-unix/X0        
+RUN apt-get install -y xvfb
 RUN useradd -ms /bin/bash builder
 USER builder
+ENV DISPLAY :0
+RUN Xvfb :0 -screen 0 1024x768x16 &
+ENTRYPOINT /bin/bash
